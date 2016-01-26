@@ -48,6 +48,7 @@
   "dependencies": {
     "math-abs": "^1.0.2",
     "math-exp": "^1.0.0",
+    "math-gamma": "^1.0.0",
     "math-ln": "^1.0.0"
   },
   "devDependencies": {
@@ -60,7 +61,9 @@
     "jshint-stylish": "2.x.x",
     "tap-spec": "4.x.x",
     "tape": "4.x.x",
-    "testling": "1.x.x"
+    "testling": "1.x.x",
+    "validate.io-finite": "^1.0.0",
+    "validate.io-nan": "^1.0.3"
   },
   "testling": {
     "files": [
