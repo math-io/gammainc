@@ -193,6 +193,6 @@ Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 [istanbul]: https://github.com/gotwarlost/istanbul
 [testling]: https://ci.testling.com
 
+[compute-io]: https://github.com/compute-io/
 [incomplete-gamma-function]: https://en.wikipedia.org/wiki/Incomplete_gamma_function
-
 [continued-fraction]:  https://en.wikipedia.org/wiki/Gauss%27s_continued_fraction
