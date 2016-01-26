@@ -7,14 +7,14 @@ gamminc
 Evaluates the regularized lower [incomplete gamma function][incomplete-gamma-function]:
 
 <div class="equation" align="center" data-raw-text="P( x, a ) = \frac{\gamma(a,x)}{\Gamma(a)} = \frac{1}{\Gamma(a)} \int_0^x t^{a-1} e^{-t} \; dt" data-equation="eq:lower_incomplete_gamma">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/68d3e61dfeace303cffe14b75c5b249ba75b5281/docs/img/eqn1.svg" alt="Equation for the regularized lower incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn1.svg" alt="Equation for the regularized lower incomplete gamma function.">
 	<br>
 </div>
 
 The function can also be used to evaluate the regularized upper incomplete gamma function, which is defined as follows:  
 
 <div class="equation" align="center" data-raw-text="Q( x, a ) = \frac{\Gamma(a,x)}{\Gamma(a)} = \frac{1}{\Gamma(a)} \int_x^\infty t^{a-1} e^{-t} \; dt" data-equation="eq:upper_incomplete_gamma">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/68d3e61dfeace303cffe14b75c5b249ba75b5281/docs/img/eqn2.svg" alt="Equation for the regularized upper incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn2.svg" alt="Equation for the regularized upper incomplete gamma function.">
 	<br>
 </div>
 
@@ -23,14 +23,14 @@ The two functions have the relationship `Q(x,a) = 1 - P(x,a)`.
 In addition, the function can be used to evaluate the *unregularized* gamma functions. The range of above functions is `[0,1]`, which is not the case fo the *unregularized* versions. The unregularized lower incomplete gamma function is defined as
 
 <div class="equation" align="center" data-raw-text="\gamma(a,x) = \int_0^x t^{a-1} e^{-t} \; dt" data-equation="eq:unreg_lower_incomplete_gamma">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/edb25812443645fa97017137b1f84708a84cea2c/docs/img/eqn3.svg" alt="Equation for the unregularized lower incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn3.svg" alt="Equation for the unregularized lower incomplete gamma function.">
 	<br>
 </div>
 
 and the upper unregularized incomplete gamma function is
 
 <div class="equation" align="center" data-raw-text="\Gamma(a,x)= \int_x^\infty t^{a-1} e^{-t} \; dt" data-equation="eq:unreg_upper_incomplete_gamma">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/edb25812443645fa97017137b1f84708a84cea2c/docs/img/eqn4.svg" alt="Equation for the unregularized upper incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn4.svg" alt="Equation for the unregularized upper incomplete gamma function.">
 	<br>
 </div>
 
@@ -50,7 +50,7 @@ var gammainc = require( 'math-gammainc' );
 ```
 
 
-#### gammainc( x, s, regularized, upper )
+#### gammainc( x, s[, regularized = true ][, upper = false ] )
 
 By default, evaluates the regularized lower [incomplete gamma function][incomplete-gamma-function] for inputs `x` and `s`. The third and fourth parameters of the function can be used to specify whether instead to evaluate the unregularized and/or upper incomplete gamma functions, respectively.
 
@@ -78,14 +78,14 @@ To evaluate the regularized *lower* incomplete gamma function, this package uses
 
 <div class="equation" align="center" data-raw-text="
     P(x, a) = \frac{1}{\Gamma(a)}\sum_{k=0}^\infty \frac{x^a e^{-x} x^k}{a(a+1)...(a+k)} " data-equation="eq:power_series">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/f38461aaa66adafa47885a4f79ef393d8d140bdc/docs/img/eqn5.svg" alt="Power series representation for the lower incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn5.svg" alt="Power series representation for the lower incomplete gamma function.">
 	<br>
 </div>
 
-This series is evaluated for all inputs `x` and `s` unless `x > 1.1` and `x > s`, in which case the function is evaluated using the upper incomplete gamma function as `P(x,s) = 1 - Q(x,s)`. To evaluate the upper incomplete gamma function, [Gauss' continued fraction expansion](https://en.wikipedia.org/wiki/Gauss%27s_continued_fraction) is used:
+This series is evaluated for all inputs `x` and `s` unless `x > 1.1` and `x > s`, in which case the function is evaluated using the upper incomplete gamma function as `P(x,s) = 1 - Q(x,s)`. To evaluate the upper incomplete gamma function, [Gauss' continued fraction expansion][continued-fraction] is used:
 
 <div class="equation" align="center" data-raw-text="Q(x, a) = \frac{1}{\Gamma(a)}\cfrac{x^a e^{-x}}{1+x-a+ \cfrac{a-1}{3+x-a+ \cfrac{2(a-2)}{5+x-a+ \cfrac{3(a-3)} {7+x-a+ \cfrac{4(a-4)}{9+x-a+ \ddots}}}}} " data-equation="eq:continued_fraction">
-	<img src="https://cdn.rawgit.com/compute-io/gammainc/f38461aaa66adafa47885a4f79ef393d8d140bdc/docs/img/eqn6.svg" alt="Continued fraction expansion for the upper incomplete gamma function.">
+	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn6.svg" alt="Continued fraction expansion for the upper incomplete gamma function.">
 	<br>
 </div>
 
@@ -193,10 +193,6 @@ Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 [istanbul]: https://github.com/gotwarlost/istanbul
 [testling]: https://ci.testling.com
 
-[compute-io]: https://github.com/compute-io/
 [incomplete-gamma-function]: https://en.wikipedia.org/wiki/Incomplete_gamma_function
-[gamma-function]: https://en.wikipedia.org/wiki/Gamma_function
-[factorial-function]: https://github.com/math-io/factorial
-[real]: https://en.wikipedia.org/wiki/Real_number
-[complex]: https://en.wikipedia.org/wiki/Complex_number
-[euler-mascheroni-constant]: https://github.com/compute-io/const-eulergamma
+
+[continued-fraction]:  https://en.wikipedia.org/wiki/Gauss%27s_continued_fraction
