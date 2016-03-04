@@ -72,28 +72,7 @@ val = gammainc( 7, 5, false );
 
 ## Implementation
 
-All of the four functions (regularized and non-regularized, upper and lower) share a common implementation as they are all related to each other (see the [Boost C++ library documentation](http://www.boost.org/doc/libs/1_35_0/libs/math/doc/sf_and_dist/html/math_toolkit/special/sf_gamma/igamma.html) for a good discussion of the functions and implementation strategies).
-
-To evaluate the regularized *lower* incomplete gamma function, this package uses the following representation of the integral as a power series in its implementation:
-
-<div class="equation" align="center" data-raw-text="
-    P(x, a) = \frac{1}{\Gamma(a)}\sum_{k=0}^\infty \frac{x^a e^{-x} x^k}{a(a+1)...(a+k)} " data-equation="eq:power_series">
-	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn5.svg" alt="Power series representation for the lower incomplete gamma function.">
-	<br>
-</div>
-
-This series is evaluated for all inputs `x` and `s` unless `x > 1.1` and `x > s`, in which case the function is evaluated using the upper incomplete gamma function as `P(x,s) = 1 - Q(x,s)`. To evaluate the upper incomplete gamma function, [Gauss' continued fraction expansion][continued-fraction] is used:
-
-<div class="equation" align="center" data-raw-text="Q(x, a) = \frac{1}{\Gamma(a)}\cfrac{x^a e^{-x}}{1+x-a+ \cfrac{a-1}{3+x-a+ \cfrac{2(a-2)}{5+x-a+ \cfrac{3(a-3)} {7+x-a+ \cfrac{4(a-4)}{9+x-a+ \ddots}}}}} " data-equation="eq:continued_fraction">
-	<img src="https://cdn.rawgit.com/math-io/gammainc/e8827ca0002651a5253b47ec38e952b7c00eaa5b/docs/img/eqn6.svg" alt="Continued fraction expansion for the upper incomplete gamma function.">
-	<br>
-</div>
-
-To compute the continued fractions, the modified Lentz's method is implemented. For a discussion of this method, see section 5.2 of "Numerical Recipes in C (2nd Ed.): The Art of Scientific Computing".
-
-**References:**
-- Lentz, W. J. (1976). Generating bessel functions in mie scattering calculations using continued fractions. Applied Optics, 15(3), 668–671. doi:10.1364/AO.15.000668
-- William H. Press, Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. 1992. Numerical Recipes in C (2nd Ed.): The Art of Scientific Computing. Cambridge University Press, New York, NY, USA.
+All of the four functions (regularized and non-regularized, upper and lower) share a common implementation since they are all related to each other. The implementation is a port from the [Boost C++ library][boost-library]. See their [documentation](http://www.boost.org/doc/libs/1_35_0/libs/math/doc/sf_and_dist/html/math_toolkit/special/sf_gamma/igamma.html) for a good discussion of the functions and the used evaluation strategies.
 
 ## Examples
 
@@ -194,5 +173,6 @@ Copyright &copy; 2016. The [Compute.io][compute-io] Authors.
 [testling]: https://ci.testling.com
 
 [compute-io]: https://github.com/compute-io/
+[boost-library]: http://www.boost.org/
 [incomplete-gamma-function]: https://en.wikipedia.org/wiki/Incomplete_gamma_function
 [continued-fraction]:  https://en.wikipedia.org/wiki/Gauss%27s_continued_fraction
